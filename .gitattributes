@@ -1,0 +1,25 @@
+# Normalize line endings
+* text=auto eol=lf
+
+# Force LF for scripts
+*.sh text eol=lf
+*.bash text eol=lf
+
+# Treat binary files correctly
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.wasm binary
+
+# Rust/WASM artifacts
+*.wasm binary
+Cargo.lock text eol=lf
+
+# Mark generated files
+pnpm-lock.yaml linguist-generated=true
+prisma/migrations/**/*.sql linguist-generated=true
+
+# Collapse vendored code in diffs
+vendor/** linguist-vendored=true
