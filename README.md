@@ -1,5 +1,10 @@
 # Swyft
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Network](https://img.shields.io/badge/network-Stellar-blueviolet)
+![Status](https://img.shields.io/badge/status-testnet-orange)
+![pnpm](https://img.shields.io/badge/package_manager-pnpm-orange)
+
 > Concentrated liquidity DEX on Stellar.
 
 Swyft is a decentralized exchange built on Stellar using Soroban smart contracts. Inspired by Uniswap v3, it brings concentrated liquidity to the Stellar ecosystem — enabling capital-efficient trading, lower fees, and MEV protection. There is no v3-style DEX on Stellar yet. Swyft is the first.
