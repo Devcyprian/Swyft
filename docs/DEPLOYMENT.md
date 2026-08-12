@@ -9,6 +9,7 @@ This guide covers how to deploy Swyft locally for development, as well as how co
 - Rust + `cargo` (for contract compilation)
 - Stellar CLI (`stellar`)
 - A funded Stellar account (for testnet: use Friendbot)
+- Docker (for local PostgreSQL)
 
 ## Local Development
 
@@ -30,19 +31,21 @@ cp .env.example .env
 ### 3. Start local services
 
 ```bash
+# Start PostgreSQL via Docker
+docker compose up -d
+
+# Run database migrations
+pnpm prisma migrate dev
+
 # Start the API and frontend in dev mode
 pnpm dev
-
-# Or start a specific app
-pnpm --filter=web dev
-pnpm --filter=api dev
 ```
 
-### 4. Database setup
+### 4. Generate a testnet keypair
 
 ```bash
-pnpm prisma migrate dev
-pnpm prisma generate
+./scripts/generate-keypair.sh
+./scripts/fund-testnet.sh <YOUR_PUBLIC_KEY>
 ```
 
 ## Contract Deployment
@@ -64,6 +67,12 @@ stellar contract deploy \
   --network testnet
 ```
 
+### Verify contract deployment
+
+```bash
+./scripts/check-contracts.sh testnet
+```
+
 ### Deploy to Mainnet
 
 Mainnet deployment requires a multisig ceremony. Contact the core team to participate.
@@ -78,6 +87,8 @@ Mainnet deployment requires a multisig ceremony. Contact the core team to partic
 | `POOL_FACTORY_ADDRESS` | Deployed factory contract address | Yes |
 | `ROUTER_ADDRESS` | Deployed router contract address | Yes |
 | `JWT_SECRET` | Secret for API auth tokens | API only |
+
+See `.env.example` for a full template.
 
 ## Docker
 
